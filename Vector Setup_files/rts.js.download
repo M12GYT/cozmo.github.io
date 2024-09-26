@@ -1785,6 +1785,9 @@ async function checkOnlineStatus() {
             
 
             setPhase("containerupload");
+            setPhase("containerSetings")
+            setPhase("containerAssetdown")
+            setPhase("containerEnjoy")
             toggleIcon("iconBle", false);
             toggleIcon("iconOta", false);
         }
@@ -1796,6 +1799,7 @@ async function checkOnlineStatus() {
         await new Promise(resolve => setTimeout(resolve, 3000));
 
         setPhase("containerupload");
+        setPhase
         toggleIcon("iconBle", false);
         toggleIcon("iconSettings", false);
         
