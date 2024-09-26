@@ -1392,6 +1392,7 @@
               _filter = args[1];
             }
           } else {
+
             _filter = null;
           }
           $("#btnDiscoverVector").click();
@@ -1766,6 +1767,9 @@
 // URL of a small endpoint to test connectivity
 const testUrl = 'https://cozmoremastered.github.io/'; // Replace with your own endpoint
 
+// URL of a small endpoint to test connectivity
+//const testUrl = 'http://localhost:8888'; // Replace with your own endpoint
+
 // Function to check if the user is online or offline
 async function checkOnlineStatus() {
     try {
@@ -1774,33 +1778,34 @@ async function checkOnlineStatus() {
 
         // Check if the response is successful (status code 200)
         if (response.ok) {
-            console.log("ssdgds");
+            console.log("Connected to endpoint");
             toggleIcon("iconOta", false);
-            
-            
+            // Additional actions if needed upon successful connection
         } else {
-            console.log("User is offline.");
-            clearInterval(statusCheckInterval); // Stop checking once offline
-            await new Promise(resolve => setTimeout(resolve, 3000));
-            
-
-            setPhase("containerupload");
-            toggleIcon("iconBle", false);
-            toggleIcon("iconOta", false);
+            handleOfflineStatus();
         }
     } catch (error) {
-        console.log("User is offline.");
-        clearInterval(statusCheckInterval); // Stop checking if there's an error
-        
+        handleOfflineStatus();
+    }
+}
 
-        await new Promise(resolve => setTimeout(resolve, 3000));
-
+// Function to handle the offline status
+function handleOfflineStatus() {
+    console.log("User is offline.");
+    clearInterval(statusCheckInterval); // Stop checking once offline
+    
+    // Delay before transitioning to the upload phase
+    setTimeout(() => {
         setPhase("containerupload");
         toggleIcon("iconBle", false);
+        toggleIcon("iconOta", false);
         toggleIcon("iconSettings", false);
-        
-        
-    }
+    }, 3000);
+}
+
+// Function to start checking online status at intervals
+function startStatusCheck(interval = 5000) {
+    statusCheckInterval = setInterval(checkOnlineStatus, interval);
 }
 
 // Start checking every 5 seconds (5000 milliseconds)
