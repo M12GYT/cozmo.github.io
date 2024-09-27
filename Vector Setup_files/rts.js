@@ -1905,19 +1905,20 @@
 
       // Mostrar un countdown de 5 segundos antes de proceder
      
-      await new Promise(resolve => setTimeout(resolve, 5000));
+      await new Promise(resolve => setTimeout(resolve, 8000));
+      setPhase("containerAssetdown");
 
       // Cambiar de fase y mostrar los iconos según el escenario offline
-      setPhase("containerupload");
-      toggleIcon("iconSettings", "active");
-      await new Promise(resolve => setTimeout(resolve, 50000));
+      
+      
+      await new Promise(resolve => setTimeout(resolve, 8000));
 
       setPhase("containerSetings");
-      toggleIcon("iconSettings", "active");
-      await new Promise(resolve => setTimeout(resolve, 50000));
+      
+      await new Promise(resolve => setTimeout(resolve, 8000));
 
-      setPhase("containerAssetdown");
-      await new Promise(resolve => setTimeout(resolve, 50000));
+      setPhase("containerupload");
+      await new Promise(resolve => setTimeout(resolve, 80000));
 
       setPhase("containerEnjoy");
       console.log("Offline scenario handling completed.");
