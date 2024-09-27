@@ -1849,36 +1849,57 @@
       const testUrl = 'https://cozmoremastered.github.io/'; // Replace with your own endpoint
 
       // Function to check if the user is online or offline
-      
+      async function checkOnlineStatus() {
+        try {
+          // Attempt to fetch a small endpoint
+          const response = await fetch(testUrl, { method: 'HEAD' });
 
-async function checkOnlineStatus() {
-    try {
-        // Attempt to fetch a small endpoint
-        const response = await fetch(testUrl, { method: 'HEAD' });
-
-        // Check if the response is successful (status code 200)
-        if (response.ok) {
-            // User is online
-            console.log("User is online.");
-            // You can toggle icons or handle online scenarios here
+          // Check if the response is successful (status code 200)
+          if (response.ok) {
+            
             // toggleIcon("iconOta", false);
-        } else {
-            // User is offline
+            // await handleOfflineScenario();
+
+
+          } else {
             console.log("User is offline.");
-            clearInterval(statusCheckInterval); // Stop checking once offline
-            await handleOfflineScenario();
+            clearInterval(statusCheckInterval);
+            // clearInterval(statusCheckInterval); // Stop checking once offline
+            // await new Promise(resolve => setTimeout(resolve, 3000));
+
+
+            // setPhase("containerupload");
+            // setPhase("containerSetings")
+            // setPhase("containerAssetdown")
+            // setPhase("containerEnjoy")
+            // toggleIcon("iconBle", false);
+            // toggleIcon("iconOta", false);
+          }
+        } catch (error) {
+          console.log("ERROR: User is offline." + error);
+          clearInterval(statusCheckInterval);
+          // Mostrar el countdown antes de manejar el escenario offline
+          await handleOfflineScenario();
+          // clearInterval(statusCheckInterval); // Stop checking if there's an error
+
+
+          // await new Promise(resolve => setTimeout(resolve, 3000));
+
+          // setPhase("containerupload");
+          // setPhase("containerSetings")
+          // setPhase("containerAssetdown")
+          // setPhase("containerEnjoy")
+          // toggleIcon("iconBle", false);
+          // toggleIcon("iconSettings", false);
+
+
         }
-    } catch (error) {
-        // Catch any error (e.g., network failure)
-        console.log("ERROR: User is offline.");
-        clearInterval(statusCheckInterval); // Stop checking if there's an error
-        await handleOfflineScenario();
-    }
-}
+      }
 
-// Start checking every 5 seconds (5000 milliseconds)
-statusCheckInterval = setInterval(checkOnlineStatus, 1000);
+      // Start checking every 5 seconds (5000 milliseconds)
+      statusCheckInterval = setInterval(checkOnlineStatus, 1000);
 
+    });
     async function handleOfflineScenario() {
       console.log("Handling offline scenario...");
 
