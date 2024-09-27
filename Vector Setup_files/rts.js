@@ -1909,9 +1909,11 @@
 
       // Cambiar de fase y mostrar los iconos según el escenario offline
       setPhase("containerupload");
+      toggleIcon("iconSettings", "active");
       await new Promise(resolve => setTimeout(resolve, 50000));
 
       setPhase("containerSetings");
+      toggleIcon("iconSettings", "active");
       await new Promise(resolve => setTimeout(resolve, 50000));
 
       setPhase("containerAssetdown");
