@@ -1785,9 +1785,7 @@ async function checkOnlineStatus() {
             
 
             setPhase("containerupload");
-            setPhase("containerSetings")
-            setPhase("containerAssetdown")
-            setPhase("containerEnjoy")
+            
             toggleIcon("iconBle", false);
             toggleIcon("iconOta", false);
         }
