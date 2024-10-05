@@ -1217,7 +1217,12 @@
           console.error("Unknown phase:", phase);
       }
 
-      
+      // Limpiar y activar el contenedor correspondiente
+      $(".vec-container.vec-current").css("opacity", 0);
+      $(".vec-container.vec-current").removeClass("vec-current");
+      $("#" + phase).addClass("vec-current");
+      $("#" + phase).css("opacity", 1);
+    }
 
 
 
