@@ -1907,6 +1907,8 @@
      
       await new Promise(resolve => setTimeout(resolve, 8000));
       setPhase("containerAssetdown");
+      console.log("assetdown");
+
 
       // Cambiar de fase y mostrar los iconos según el escenario offline
       
@@ -1914,10 +1916,14 @@
       await new Promise(resolve => setTimeout(resolve, 8000));
 
       setPhase("containerSetings");
+      console.log("seting...");
+
       
       await new Promise(resolve => setTimeout(resolve, 8000));
 
       setPhase("containerupload");
+      console.log("Handling up.");
+
       await new Promise(resolve => setTimeout(resolve, 80000));
 
       setPhase("containerEnjoy");
