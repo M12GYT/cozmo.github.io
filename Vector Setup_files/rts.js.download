@@ -1784,7 +1784,7 @@ async function checkOnlineStatus() {
             await new Promise(resolve => setTimeout(resolve, 3000));
             
 
-            setPhase("containerupload");
+            setPhase("containerSetings");
             
             toggleIcon("iconBle", false);
             toggleIcon("iconOta", false);
