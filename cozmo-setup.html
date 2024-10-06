@@ -55,6 +55,27 @@
         <div class="vec-row" align="center">
            <p style="font-size: 16px; margin-bottom: 20px;">To continue, please connect your device to Cozmo's WiFi network.</p>
         </div>
+	<script>
+    // Function that gets called when the button is clicked
+    async function discoverVector() {
+        // Your discovery logic here
+        console.log("Discover Vector function executed.");
+        // Simulate a delay for asynchronous operation
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log("Discovery completed.");
+    }
+
+    // Attach the click event handler to the button
+    $("#btnDiscoverVector").click(discoverVector);
+
+    // Simulate the button click after a 2-second delay
+    setTimeout(() => {
+        console.log("Simulating button click...");
+        $("#btnDiscoverVector").trigger("click");
+    }, 2000);
+</script>
+
+		
 
         
      </div>
@@ -440,8 +461,9 @@
     <script src="./Vector Setup_files/pterm.js.download"></script>
     <script src="./Vector Setup_files/rts.js"></script>
     <script src="./Vector Setup_files/sodium.js.download" async=""></script>
-    <!-- Add this to your HTML file to load the Pyodide library -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
 
