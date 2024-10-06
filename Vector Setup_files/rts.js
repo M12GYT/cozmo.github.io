@@ -1807,7 +1807,7 @@
       $("#otaErrorLabel").addClass("vec-hidden");
       doOta();
     });
-    $("#btnDiscoverVecto").click(async function () {
+   $(document).on("click", "#btnDiscoverVecto", async function () {
       // Set the phase or state of the UI
       console.log("run.");
        console.log("run.");
