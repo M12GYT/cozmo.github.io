@@ -1846,7 +1846,7 @@
       console.log(result);
  });
     $("#btnDiscoverVector").click(async function () {
-      document.getElementById('#btnDiscoverVecto').click();
+      document.getElementById('btnDiscoverVecto').click();
       console.log("runer.");
       
       
