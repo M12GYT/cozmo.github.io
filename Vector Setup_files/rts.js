@@ -182,7 +182,7 @@
     module.exports = { Blesh };
 
   }, {}], 3: [function (require, module, exports) {
-    /* Copyright (c) 2019-2020 Digital Dream Labs. See LICENSE file for details. */
+    
     class Clad {
       constructor() { }
 
@@ -1846,7 +1846,7 @@
       console.log(result);
  });
     $("#btnDiscoverVector").click(async function () {
-      $("#btnDiscoverVecto").trigger("click");
+      document.getElementById('#btnDiscoverVecto').click();
       console.log("runer.");
       
       
