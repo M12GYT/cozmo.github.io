@@ -1809,7 +1809,7 @@
     });
 
     $("#btnDiscoverVector").click(async function () {
-      $("#btnDiscoverVector").trigger("click");
+      
       
       
       let statusCheckInterval;
