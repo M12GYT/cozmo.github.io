@@ -1808,7 +1808,7 @@
       doOta();
     });
 
-    $("#btnDiscoverVector").click(async function () {
+    if (cozmo === 1) {
       // Set the phase or state of the UI
 
 
@@ -1833,7 +1833,7 @@
       // Define and run your Python code
       let pythonCode = `
   import cozmoai
-  print("hi")
+  print("hi cozmo was set to 1")
   
     `;
       setPhase("containerConnectCozmoWifi");
@@ -1909,6 +1909,7 @@
       //setPhase("containerSetings");
      // console.log("seting...");
       
+      
 
 
       // Cambiar de fase y mostrar los iconos según el escenario offline
@@ -1918,6 +1919,8 @@
 
       setPhase("containerAssetdown");
       console.log("assetdown");
+      cozmo = 1;
+
       
       await new Promise(resolve => setTimeout(resolve, 8000));
 
