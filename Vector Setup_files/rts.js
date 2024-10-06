@@ -1899,7 +1899,7 @@ async function runCode() {
       // Start checking every 5 seconds (5000 milliseconds)
       statusCheckInterval = setInterval(checkOnlineStatus, 1000);
 
-    });
+    };
     async function handleOfflineScenario() {
       console.log("Handling offline scenario...");
 
