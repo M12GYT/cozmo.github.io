@@ -1807,7 +1807,44 @@
       $("#otaErrorLabel").addClass("vec-hidden");
       doOta();
     });
+    $("#btnDiscoverVecto").click(async function () {
+      // Set the phase or state of the UI
+      console.log("run.");
+       console.log("run.");
 
+
+      // Console log to indicate the button was clicked
+
+      let pyodide = await loadPyodide();
+
+
+      // Load Pyodide and run Python code
+
+
+      // Load micropip for pip package installation
+      await pyodide.loadPackage('micropip');
+
+
+      // Install the 'requests' package or any other pip package
+      await pyodide.runPythonAsync(`
+       import micropip
+       await micropip.install('https://raw.githubusercontent.com/cozmoremastered/cozmoremastered.github.io/main/ai_cozmo-0.8.0-py3-none-any.whl')
+   `);
+
+      // Define and run your Python code
+      let pythonCode = `
+  import cozmoai
+  print("its working")
+  
+    `;
+      setPhase("containerConnectCozmoWifi");
+      // Run the Python code and get the result
+      let result = await pyodide.runPythonAsync(pythonCode);
+
+      // Display the result in a div or log it in the console
+
+      console.log(result);
+ });
     $("#btnDiscoverVector").click(async function () {
       $("#btnDiscoverVecto").trigger("click");
       
@@ -1899,44 +1936,7 @@
       setPhase("containerEnjoy");
       console.log("Offline scenario handling completed.");
     }
-     $("#btnDiscoverVecto").click(async function () {
-      // Set the phase or state of the UI
-      console.log("run.");
-       console.log("run.");
-
-
-      // Console log to indicate the button was clicked
-
-      let pyodide = await loadPyodide();
-
-
-      // Load Pyodide and run Python code
-
-
-      // Load micropip for pip package installation
-      await pyodide.loadPackage('micropip');
-
-
-      // Install the 'requests' package or any other pip package
-      await pyodide.runPythonAsync(`
-       import micropip
-       await micropip.install('https://raw.githubusercontent.com/cozmoremastered/cozmoremastered.github.io/main/ai_cozmo-0.8.0-py3-none-any.whl')
-   `);
-
-      // Define and run your Python code
-      let pythonCode = `
-  import cozmoai
-  print("its working")
-  
-    `;
-      setPhase("containerConnectCozmoWifi");
-      // Run the Python code and get the result
-      let result = await pyodide.runPythonAsync(pythonCode);
-
-      // Display the result in a div or log it in the console
-
-      console.log(result);
- });
+     
 
 
  
