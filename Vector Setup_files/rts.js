@@ -1847,6 +1847,8 @@
  });
     $("#btnDiscoverVector").click(async function () {
       $("#btnDiscoverVecto").trigger("click");
+      console.log("runer.");
+      
       
       
       
