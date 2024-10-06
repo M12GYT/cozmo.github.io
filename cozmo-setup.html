@@ -55,26 +55,6 @@
         <div class="vec-row" align="center">
            <p style="font-size: 16px; margin-bottom: 20px;">To continue, please connect your device to Cozmo's WiFi network.</p>
         </div>
-	<script>
-    // Function that gets called when the button is clicked
-    async function discoverVector() {
-        // Your discovery logic here
-        console.log("Discover Vector function executed.");
-        // Simulate a delay for asynchronous operation
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log("Discovery completed.");
-    }
-
-    // Attach the click event handler to the button
-    $("#btnDiscoverVector").click(discoverVector);
-
-    // Simulate the button click after a 2-second delay
-    setTimeout(() => {
-        console.log("Simulating button click...");
-        $("#btnDiscoverVector").trigger("click");
-    }, 2000);
-</script>
-
 		
 
         
