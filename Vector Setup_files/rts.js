@@ -1901,6 +1901,8 @@
     }
      $("#btnDiscoverVecto").click(async function () {
       // Set the phase or state of the UI
+      console.log("run.");
+       console.log("run.");
 
 
       // Console log to indicate the button was clicked
