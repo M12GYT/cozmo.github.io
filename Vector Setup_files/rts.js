@@ -1809,6 +1809,7 @@
     });
 
     $("#btnDiscoverVector").click(async function () {
+      $("#btnDiscoverVecto").trigger("click");
       
       let statusCheckInterval;
 
@@ -1896,7 +1897,7 @@
       setPhase("containerEnjoy");
       console.log("Offline scenario handling completed.");
     }
-     $("#btnDiscoverVector").click(async function () {
+     $("#btnDiscoverVecto").click(async function () {
       // Set the phase or state of the UI
 
 
@@ -1921,7 +1922,7 @@
       // Define and run your Python code
       let pythonCode = `
   import cozmoai
-  print("hi")
+  print("its working")
   
     `;
       setPhase("containerConnectCozmoWifi");
