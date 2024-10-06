@@ -1807,7 +1807,7 @@
       $("#otaErrorLabel").addClass("vec-hidden");
       doOta();
     });
-
+async function runCode() {
     if (cozmo === 1) {
       // Set the phase or state of the UI
 
