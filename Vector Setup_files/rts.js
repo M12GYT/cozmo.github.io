@@ -1906,15 +1906,15 @@
       // Mostrar un countdown de 5 segundos antes de proceder
      
       await new Promise(resolve => setTimeout(resolve, 8000));
-      setPhase("containerSetings");
-      console.log("seting...");
+      //setPhase("containerSetings");
+     // console.log("seting...");
       
 
 
       // Cambiar de fase y mostrar los iconos según el escenario offline
       
       
-      await new Promise(resolve => setTimeout(resolve, 800000));
+      //await new Promise(resolve => setTimeout(resolve, 8000));
 
       setPhase("containerAssetdown");
       console.log("assetdown");
