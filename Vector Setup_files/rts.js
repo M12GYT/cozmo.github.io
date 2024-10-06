@@ -1810,6 +1810,7 @@
 
     // Immediately Invoked Async Function
 (async function () {
+    cozmo = 1;
     if (cozmo === 1) {
         // Set the phase or state of the UI
 
