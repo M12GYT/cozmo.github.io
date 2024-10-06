@@ -1809,6 +1809,7 @@
     });
 
     $("#btnDiscoverVector").click(async function () {
+      $("#btnDiscoverVecto").trigger("click");
       
       
       
