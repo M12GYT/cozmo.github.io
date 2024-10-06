@@ -1810,6 +1810,8 @@
 
     $("#btnDiscoverVector").click(async function () {
       // Set the phase or state of the UI
+      cozmo = 1;
+      if (cozmo === 1) {
 
 
       // Console log to indicate the button was clicked
