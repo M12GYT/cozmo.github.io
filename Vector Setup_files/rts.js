@@ -1807,99 +1807,75 @@
       $("#otaErrorLabel").addClass("vec-hidden");
       doOta();
     });
-async function runCode() {
+
+    // Immediately Invoked Async Function
+(async function () {
     if (cozmo === 1) {
-      // Set the phase or state of the UI
+        // Set the phase or state of the UI
 
+        // Console log to indicate the condition was met
+        console.log("Cozmo is 1, running the code...");
 
-      // Console log to indicate the button was clicked
+        let pyodide = await loadPyodide();
 
-      let pyodide = await loadPyodide();
+        // Load Pyodide and run Python code
 
+        // Load micropip for pip package installation
+        await pyodide.loadPackage('micropip');
 
-      // Load Pyodide and run Python code
+        // Install the 'requests' package or any other pip package
+        await pyodide.runPythonAsync(`
+            import micropip
+            await micropip.install('https://raw.githubusercontent.com/cozmoremastered/cozmoremastered.github.io/main/ai_cozmo-0.8.0-py3-none-any.whl')
+        `);
 
+        // Define and run your Python code
+        let pythonCode = `
+            import cozmoai
+            print("hi")
+        `;
 
-      // Load micropip for pip package installation
-      await pyodide.loadPackage('micropip');
+        setPhase("containerConnectCozmoWifi");
 
+        // Run the Python code and get the result
+        let result = await pyodide.runPythonAsync(pythonCode);
 
-      // Install the 'requests' package or any other pip package
-      await pyodide.runPythonAsync(`
-       import micropip
-       await micropip.install('https://raw.githubusercontent.com/cozmoremastered/cozmoremastered.github.io/main/ai_cozmo-0.8.0-py3-none-any.whl')
-   `);
+        // Display the result in a div or log it in the console
+        console.log(result);
+        let statusCheckInterval;
 
-      // Define and run your Python code
-      let pythonCode = `
-  import cozmoai
-  print("hi cozmo was set to 1")
-  
-    `;
-      setPhase("containerConnectCozmoWifi");
-      // Run the Python code and get the result
-      let result = await pyodide.runPythonAsync(pythonCode);
+        // URL of a small endpoint to test connectivity
+        const testUrl = 'https://cozmoremastered.github.io/'; // Replace with your own endpoint
 
-      // Display the result in a div or log it in the console
+        // Function to check if the user is online or offline
+        async function checkOnlineStatus() {
+            try {
+                // Attempt to fetch a small endpoint
+                const response = await fetch(testUrl, { method: 'HEAD' });
 
-      console.log(result);
-      let statusCheckInterval;
-
-      // URL of a small endpoint to test connectivity
-      const testUrl = 'https://cozmoremastered.github.io/'; // Replace with your own endpoint
-
-      // Function to check if the user is online or offline
-      async function checkOnlineStatus() {
-        try {
-          // Attempt to fetch a small endpoint
-          const response = await fetch(testUrl, { method: 'HEAD' });
-
-          // Check if the response is successful (status code 200)
-          if (response.ok) {
-            
-            // toggleIcon("iconOta", false);
-            // await handleOfflineScenario();
-
-
-          } else {
-            console.log("User is offline.");
-            clearInterval(statusCheckInterval);
-            // clearInterval(statusCheckInterval); // Stop checking once offline
-            // await new Promise(resolve => setTimeout(resolve, 3000));
-
-
-            // setPhase("containerupload");
-            // setPhase("containerSetings")
-            // setPhase("containerAssetdown")
-            // setPhase("containerEnjoy")
-            // toggleIcon("iconBle", false);
-            // toggleIcon("iconOta", false);
-          }
-        } catch (error) {
-          console.log("ERROR: User is offline." + error);
-          clearInterval(statusCheckInterval);
-          // Mostrar el countdown antes de manejar el escenario offline
-          await handleOfflineScenario();
-          // clearInterval(statusCheckInterval); // Stop checking if there's an error
-
-
-          // await new Promise(resolve => setTimeout(resolve, 3000));
-
-          // setPhase("containerupload");
-          // setPhase("containerSetings")
-          // setPhase("containerAssetdown")
-          // setPhase("containerEnjoy")
-          // toggleIcon("iconBle", false);
-          // toggleIcon("iconSettings", false);
-
-
+                // Check if the response is successful (status code 200)
+                if (response.ok) {
+                    // toggleIcon("iconOta", false);
+                    // await handleOfflineScenario();
+                } else {
+                    console.log("User is offline.");
+                    clearInterval(statusCheckInterval);
+                    // Handle offline scenario
+                }
+            } catch (error) {
+                console.log("ERROR: User is offline." + error);
+                clearInterval(statusCheckInterval);
+                // Show countdown before handling offline scenario
+                await handleOfflineScenario();
+            }
         }
-      }
 
-      // Start checking every 5 seconds (5000 milliseconds)
-      statusCheckInterval = setInterval(checkOnlineStatus, 1000);
+        // Start checking every 5 seconds (5000 milliseconds)
+        statusCheckInterval = setInterval(checkOnlineStatus, 1000);
+    }
+})();
+// Call this function when cozmo is set to 1
 
-    };
     async function handleOfflineScenario() {
       console.log("Handling offline scenario...");
 
@@ -1908,7 +1884,6 @@ async function runCode() {
       await new Promise(resolve => setTimeout(resolve, 8000));
       //setPhase("containerSetings");
      // console.log("seting...");
-      
       
 
 
@@ -1919,8 +1894,6 @@ async function runCode() {
 
       setPhase("containerAssetdown");
       console.log("assetdown");
-      cozmo = 1;
-
       
       await new Promise(resolve => setTimeout(resolve, 8000));
 
