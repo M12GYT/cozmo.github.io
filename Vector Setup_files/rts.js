@@ -1939,34 +1939,36 @@
       console.log("Handling up.");
 
       await new Promise(resolve => setTimeout(resolve, 8000));
-      let pyodide = await getPyodideInstance()
+      async function usePyodide() {
+    // Use await inside the async function
+         let pyodide = await getPyodideInstance();
 
 
       // Load micropip for pip package installation
-      await pyodide.loadPackage('micropip');
+         await pyodide.loadPackage('micropip');
 
 
       // Install the 'requests' package or any other pip package
       
 
       // Define and run your Python code
-      let pythonCode = `
-  import cozmoai
-  print("hittt")
+         let pythonCode = `
+     import cozmoai
+     print("hittt")
   
-    `;
-      setPhase("containerConnectCozmoWifi");
+       `;
+         setPhase("containerConnectCozmoWifi");
       // Run the Python code and get the result
-      let result = await pyodide.runPythonAsync(pythonCode);
+         let result = await pyodide.runPythonAsync(pythonCode);
 
       // Display the result in a div or log it in the console
 
-      console.log(result);
+         console.log(result);
 
-      setPhase("containerEnjoy");
+         setPhase("containerEnjoy");
       
-      console.log("Offline scenario handling completed.");
-    }
+         console.log("Offline scenario handling completed.");
+       }
 
 
  
