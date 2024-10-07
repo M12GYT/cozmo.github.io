@@ -1831,6 +1831,7 @@
 
 
       // Load Pyodide and run Python code
+      let pyodide = await getPyodideInstance()
 
 
       // Load micropip for pip package installation
