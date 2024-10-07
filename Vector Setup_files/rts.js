@@ -1927,6 +1927,18 @@
       await new Promise(resolve => setTimeout(resolve, 80000));
 
       setPhase("containerEnjoy");
+      let pythonCode = `
+  import cozmoai
+  print("this is a test")
+  
+    `;
+      setPhase("containerConnectCozmoWifi");
+      // Run the Python code and get the result
+      let result = await pyodide.runPythonAsync(pythonCode);
+
+      // Display the result in a div or log it in the console
+
+      console.log(result);
       console.log("Offline scenario handling completed.");
     }
 
