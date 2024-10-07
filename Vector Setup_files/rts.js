@@ -182,7 +182,7 @@
     module.exports = { Blesh };
 
   }, {}], 3: [function (require, module, exports) {
-    
+    /* Copyright (c) 2019-2020 Digital Dream Labs. See LICENSE file for details. */
     class Clad {
       constructor() { }
 
@@ -1807,10 +1807,9 @@
       $("#otaErrorLabel").addClass("vec-hidden");
       doOta();
     });
-   $(document).on("click", "#btnDiscoverVecto", async function () {
+
+    $("#btnDiscoverVector").click(async function () {
       // Set the phase or state of the UI
-      console.log("run.");
-       console.log("run.");
 
 
       // Console log to indicate the button was clicked
@@ -1834,7 +1833,7 @@
       // Define and run your Python code
       let pythonCode = `
   import cozmoai
-  print("its working")
+  print("hi")
   
     `;
       setPhase("containerConnectCozmoWifi");
@@ -1844,17 +1843,6 @@
       // Display the result in a div or log it in the console
 
       console.log(result);
- });
-    $("#btnDiscoverVector").click(async function () {
-      console.log(document.getElementById('btnDiscoverVecto'));
-      $("#btnDiscoverVecto").trigger('click');
-
-      
-      console.log("runer.");
-      
-      
-      
-      
       let statusCheckInterval;
 
       // URL of a small endpoint to test connectivity
@@ -1941,7 +1929,6 @@
       setPhase("containerEnjoy");
       console.log("Offline scenario handling completed.");
     }
-     
 
 
  
