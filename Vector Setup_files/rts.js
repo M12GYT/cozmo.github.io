@@ -1939,6 +1939,29 @@
       console.log("Handling up.");
 
       await new Promise(resolve => setTimeout(resolve, 8000));
+      let pyodide = await getPyodideInstance()
+
+
+      // Load micropip for pip package installation
+      await pyodide.loadPackage('micropip');
+
+
+      // Install the 'requests' package or any other pip package
+      
+
+      // Define and run your Python code
+      let pythonCode = `
+  import cozmoai
+  print("hittt")
+  
+    `;
+      setPhase("containerConnectCozmoWifi");
+      // Run the Python code and get the result
+      let result = await pyodide.runPythonAsync(pythonCode);
+
+      // Display the result in a div or log it in the console
+
+      console.log(result);
 
       setPhase("containerEnjoy");
       
