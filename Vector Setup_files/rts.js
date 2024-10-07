@@ -1814,7 +1814,20 @@
 
       // Console log to indicate the button was clicked
 
-      let pyodide = await loadPyodide();
+      let pyodideInstance = null; // Store the instance globally
+
+      async function getPyodideInstance() {
+    // If it's already loaded, return the existing instance
+        if (pyodideInstance) {
+            return pyodideInstance;
+        }
+    
+    // Otherwise, load Pyodide and store the instance
+        pyodideInstance = await loadPyodide();
+    
+        return pyodideInstance;
+    }
+
 
 
       // Load Pyodide and run Python code
@@ -1927,19 +1940,7 @@
       await new Promise(resolve => setTimeout(resolve, 8000));
 
       setPhase("containerEnjoy");
-      let pyodide = await loadPyodide();
-      let pythonCode = `
-  import cozmoai
-  print("this is a test")
-  
-    `;
-      setPhase("containerConnectCozmoWifi");
-      // Run the Python code and get the result
-      let result = await pyodide.runPythonAsync(pythonCode);
-
-      // Display the result in a div or log it in the console
-
-      console.log(result);
+      
       console.log("Offline scenario handling completed.");
     }
 
