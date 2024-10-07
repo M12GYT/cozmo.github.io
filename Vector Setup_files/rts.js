@@ -1924,7 +1924,7 @@
       setPhase("containerupload");
       console.log("Handling up.");
 
-      await new Promise(resolve => setTimeout(resolve, 80000));
+      await new Promise(resolve => setTimeout(resolve, 8000));
 
       setPhase("containerEnjoy");
       let pythonCode = `
