@@ -1927,6 +1927,7 @@
       await new Promise(resolve => setTimeout(resolve, 8000));
 
       setPhase("containerEnjoy");
+      let pyodide = await loadPyodide();
       let pythonCode = `
   import cozmoai
   print("this is a test")
