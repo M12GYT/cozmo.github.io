@@ -60,43 +60,20 @@
         
      </div>
      <div id="containerupload" class="vec-container" icon="iconBle" style="margin: 20px; padding: 20px; text-align: center;">
-       <div class="vec-row" align="center">
-         <div class="header-container" style="margin-bottom: 10px;">
-           <h3>Checking cozmo for required assets<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h3>
-           <hr>
+          <div class="vec-row" align="center">
+            <div class="header-container" style="margin-bottom: 10px;">
+              <h3>Checking cozmo for assets</h3>
+              <hr>
+            </div>
+         </div>
+
+        <div class="vec-row" align="center">
+          
         </div>
-      </div>
 
-     <style>
-        .dot {
-         font-size: 1.5em;
-         display: inline-block;
-         animation: wave 1.5s infinite;
-       }
-
-       .dot:nth-child(1) {
-          animation-delay: 0s;
-       }
-
-       .dot:nth-child(2) {
-         animation-delay: 0.2s;
-       }
-
-       .dot:nth-child(3) {
-         animation-delay: 0.4s;
-       }
-
-       @keyframes wave {
-         0%, 60%, 100% {
-           transform: translateY(0);
-         }
-         30% {
-           transform: translateY(-10px);
-         }
-       }
-   </style>
-</div>
-
+        <div class="vec-row" align="center">
+           
+        </div>
 
         
      </div>
@@ -163,44 +140,38 @@
             </div>
           </div>
         </div>
-	<div id="containerAssetdown" class="vec-container" icon="iconBle" style="margin: 20px; padding: 20px; text-align: center;">
-       <div class="vec-row" align="center">
-         <div class="header-container" style="margin-bottom: 10px;">
-           <h3>Downloading Required assets<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h3>
-           <hr>
+	<div id="containerAssetdown" class="container-fluid vec-container vec-current" icon="iconEnv" style="opacity: 1;">
+          <div class="row">
+            <div class="col-md-4 offset-md-4" align="center">
+              <p class="h5">Downloading required assetes</p>
+              <br>
+              
+              <br><br>
+              <button class="vec-btn vec-env-select-btn">Confirm</button>
+            </div>
+          </div>
         </div>
-      </div>
-
-     <style>
-        .dot {
-         font-size: 1.5em;
-         display: inline-block;
-         animation: wave 1.5s infinite;
-       }
-
-       .dot:nth-child(1) {
-          animation-delay: 0s;
-       }
-
-       .dot:nth-child(2) {
-         animation-delay: 0.2s;
-       }
-
-       .dot:nth-child(3) {
-         animation-delay: 0.4s;
-       }
-
-       @keyframes wave {
-         0%, 60%, 100% {
-           transform: translateY(0);
-         }
-         30% {
-           transform: translateY(-10px);
-         }
-       }
-   </style>
-</div>
-
+	<div id="containerEnjoy" class="container-fluid vec-container vec-current" icon="iconEnv" style="opacity: 1;">
+          <div class="row">
+            <div class="col-md-4 offset-md-4" align="center">
+              <p class="h5">Enjoy</p>
+              <br>
+              
+              <br><br>
+              <button class="vec-btn vec-env-select-btn">Confirm</button>
+            </div>
+          </div>
+        </div>
+        <div id="containerEnvironmentError" class="vec-container">
+          <div class="vec-row">
+            <img class="vec-env-error-icon" src="./Vector Setup_files/exclamation-solid.svg">
+          </div>
+          <div class="vec-row">
+            <p>
+              There was an error loading the settings.json file.
+            </p>
+          </div>
+        </div>
 	
         <div id="containerDiscover" class="vec-container" icon="iconBle">
           <div id="discoverFirstTime">
