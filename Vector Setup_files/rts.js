@@ -1929,13 +1929,14 @@ async function getPyodideInstance() {
       
       
       //await new Promise(resolve => setTimeout(resolve, 8000));
+      setPhase("containerupload");
 
-      setPhase("containerAssetdown");
-      console.log("assetdown");
+      
+      //console.log("assetdown");
       
       await new Promise(resolve => setTimeout(resolve, 8000));
 
-      setPhase("containerupload");
+      setPhase("containerAssetdown");
       console.log("Handling up.");
 
       await new Promise(resolve => setTimeout(resolve, 8000));
