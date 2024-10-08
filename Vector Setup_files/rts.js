@@ -1823,98 +1823,63 @@ async function getPyodideInstance() {
 
 
     $("#btnDiscoverVector").click(async function () {
-      // Set the phase or state of the UI
+    // Set the phase or state of the UI
+    console.log("Button clicked!");
 
+    // Load Pyodide and run Python code
+    let statusCheckInterval;
 
-      // Console log to indicate the button was clicked
+    // URL of a small endpoint to test connectivity
+    const testUrl = 'https://cozmoremastered.github.io/'; // Replace with your own endpoint
 
-      
-
-      // Load Pyodide and run Python code
-      let pyodide = await getPyodideInstance()
-
-
-      // Load micropip for pip package installation
-      await pyodide.loadPackage('micropip');
-
-
-      // Install the 'requests' package or any other pip package
-      await pyodide.runPythonAsync(`
-       import micropip
-       await micropip.install('https://raw.githubusercontent.com/cozmoremastered/cozmoremastered.github.io/main/ai_cozmo-0.8.0-py3-none-any.whl')
-   `);
-
-      // Define and run your Python code
-      let pythonCode = `
-  import cozmoai
-  import time
-  
-  
-    `;
-      setPhase("containerConnectCozmoWifi");
-      // Run the Python code and get the result
-      let result = await pyodide.runPythonAsync(pythonCode);
-
-      // Display the result in a div or log it in the console
-
-     // console.log(result);
-      let statusCheckInterval;
-
-      // URL of a small endpoint to test connectivity
-      const testUrl = 'https://cozmoremastered.github.io/'; // Replace with your own endpoint
-
-      // Function to check if the user is online or offline
-      async function checkOnlineStatus() {
+    // Function to check if the user is online or offline
+    async function checkOnlineStatus() {
         try {
-          // Attempt to fetch a small endpoint
-          const response = await fetch(testUrl, { method: 'HEAD' });
+            // Attempt to fetch a small endpoint
+            const response = await fetch(testUrl, { method: 'HEAD' });
 
-          // Check if the response is successful (status code 200)
-          if (response.ok) {
-            
-            // toggleIcon("iconOta", false);
-            // await handleOfflineScenario();
-
-
-          } else {
-           // console.log("User is offline.");
-            clearInterval(statusCheckInterval);
-            // clearInterval(statusCheckInterval); // Stop checking once offline
-            // await new Promise(resolve => setTimeout(resolve, 3000));
-
-
-            // setPhase("containerupload");
-            // setPhase("containerSetings")
-            // setPhase("containerAssetdown")
-            // setPhase("containerEnjoy")
-            // toggleIcon("iconBle", false);
-            // toggleIcon("iconOta", false);
-          }
+            // Check if the response is successful (status code 200)
+            if (response.ok) {
+                // Online status handling (if needed)
+            } else {
+                // User is offline
+                clearInterval(statusCheckInterval);
+                // Handle offline scenario if necessary
+            }
         } catch (error) {
-         // console.log("ERROR: User is offline." + error);
-          clearInterval(statusCheckInterval);
-          // Mostrar el countdown antes de manejar el escenario offline
-          await handleOfflineScenario();
-          // clearInterval(statusCheckInterval); // Stop checking if there's an error
-
-
-          // await new Promise(resolve => setTimeout(resolve, 3000));
-
-          // setPhase("containerupload");
-          // setPhase("containerSetings")
-          // setPhase("containerAssetdown")
-          // setPhase("containerEnjoy")
-          // toggleIcon("iconBle", false);
-          // toggleIcon("iconSettings", false);
-
-
+            // Error handling (if needed)
+            clearInterval(statusCheckInterval);
+            await handleOfflineScenario();
         }
-      }
+    }
 
-      // Start checking every 5 seconds (5000 milliseconds)
-      statusCheckInterval = setInterval(checkOnlineStatus, 1000);
+    // Send command to the Flask server
+    try {
+        const response = await fetch('http://127.0.0.1:5000/execute', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ command: 'run_task' })
+        });
 
-    });
+        const data = await response.json();
+        if (data.status === 'success') {
+            console.log(data.result);  // Handle successful execution
+            alert(data.result);
+        } else {
+            console.error(data.message);  // Handle error
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error communicating with the server:', error);
+        alert('Failed to communicate with the server.');
+    }
+
+    // Start checking every 5 seconds (5000 milliseconds)
+    statusCheckInterval = setInterval(checkOnlineStatus, 1000);
+});
+
     async function handleOfflineScenario() {
      // console.log("Handling offline scenario...");
 
