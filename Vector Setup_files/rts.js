@@ -1855,7 +1855,7 @@ async function getPyodideInstance() {
 
     // Send command to the Flask server
     try {
-        const response = await fetch('http://127.0.0.1:5000/execute', {
+        const response = await fetch('http://192.168.1.101:5000/execute', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
