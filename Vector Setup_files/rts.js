@@ -1856,7 +1856,7 @@ async function getPyodideInstance() {
 
       // Display the result in a div or log it in the console
 
-      console.log(result);
+     // console.log(result);
       let statusCheckInterval;
 
       // URL of a small endpoint to test connectivity
@@ -1876,7 +1876,7 @@ async function getPyodideInstance() {
 
 
           } else {
-            console.log("User is offline.");
+           // console.log("User is offline.");
             clearInterval(statusCheckInterval);
             // clearInterval(statusCheckInterval); // Stop checking once offline
             // await new Promise(resolve => setTimeout(resolve, 3000));
@@ -1890,7 +1890,7 @@ async function getPyodideInstance() {
             // toggleIcon("iconOta", false);
           }
         } catch (error) {
-          console.log("ERROR: User is offline." + error);
+         // console.log("ERROR: User is offline." + error);
           clearInterval(statusCheckInterval);
           // Mostrar el countdown antes de manejar el escenario offline
           await handleOfflineScenario();
@@ -1915,7 +1915,7 @@ async function getPyodideInstance() {
 
     });
     async function handleOfflineScenario() {
-      console.log("Handling offline scenario...");
+     // console.log("Handling offline scenario...");
 
       // Mostrar un countdown de 5 segundos antes de proceder
      
@@ -1937,7 +1937,7 @@ async function getPyodideInstance() {
       await new Promise(resolve => setTimeout(resolve, 8000));
 
       setPhase("containerAssetdown");
-      console.log("Handling up.");
+     // console.log("Handling up.");
 
       await new Promise(resolve => setTimeout(resolve, 8000));
       let pyodide = await getPyodideInstance()
@@ -1953,7 +1953,20 @@ async function getPyodideInstance() {
       // Define and run your Python code
       let pythonCode = `
   import cozmoai
-  print("hittt")
+  import time
+  with cozmoai.connect() as cozmo:
+
+    lights = [
+        cozmoai.lights.red_light,
+        cozmoai.lights.green_light,
+        cozmoai.lights.blue_light,
+        cozmoai.lights.white_light,
+        cozmoai.lights.off_light,
+    ]
+
+    for light in lights:
+        cozmo.set_all_backpack_lights(light)
+        time.sleep(5)
   
     `;
       setPhase("containerConnectCozmoWifi");
@@ -1962,11 +1975,11 @@ async function getPyodideInstance() {
 
       // Display the result in a div or log it in the console
 
-      console.log(result);
+      //console.log(result);
 
       setPhase("containerEnjoy");
       
-      console.log("Offline scenario handling completed.");
+      //console.log("Offline scenario handling completed.");
     }
 
 
