@@ -1847,7 +1847,20 @@ async function getPyodideInstance() {
       // Define and run your Python code
       let pythonCode = `
   import cozmoai
-  print("hi")
+  import time
+  with cozmoai.connect() as cozmo:
+
+    lights = [
+        cozmoai.lights.red_light,
+        cozmoai.lights.green_light,
+        cozmoai.lights.blue_light,
+        cozmoai.lights.white_light,
+        cozmoai.lights.off_light,
+    ]
+
+    for light in lights:
+        cozmo.set_all_backpack_lights(light)
+        time.sleep(5)
   
     `;
       setPhase("containerConnectCozmoWifi");
