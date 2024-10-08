@@ -1807,6 +1807,20 @@
       $("#otaErrorLabel").addClass("vec-hidden");
       doOta();
     });
+    let pyodideInstance = null; // Store the instance globally
+
+async function getPyodideInstance() {
+    // If it's already loaded, return the existing instance
+    if (pyodideInstance) {
+        return pyodideInstance;
+    }
+
+    // Otherwise, load Pyodide and store the instance
+    pyodideInstance = await loadPyodide();
+
+    return pyodideInstance;
+}
+
 
     $("#btnDiscoverVector").click(async function () {
       // Set the phase or state of the UI
@@ -1814,21 +1828,7 @@
 
       // Console log to indicate the button was clicked
 
-      let pyodideInstance = null; // Store the instance globally
-
-      async function getPyodideInstance() {
-    // If it's already loaded, return the existing instance
-        if (pyodideInstance) {
-            return pyodideInstance;
-        }
-    
-    // Otherwise, load Pyodide and store the instance
-        pyodideInstance = await loadPyodide();
-    
-        return pyodideInstance;
-    }
-
-
+      
 
       // Load Pyodide and run Python code
       let pyodide = await getPyodideInstance()
