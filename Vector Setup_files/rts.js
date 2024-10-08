@@ -1971,7 +1971,7 @@ with cozmoai.connect() as cozmo:
     for light in lights:
         cozmo.set_all_backpack_lights(light)
         time.sleep(5)
-`;
+
 
   
     `;
